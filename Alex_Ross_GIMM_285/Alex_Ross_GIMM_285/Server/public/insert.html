@@ -1,0 +1,238 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Insert Slime Combo</title>
+</head>
+
+<body>
+
+    <div class="main-box">
+        <nav class="navbar navbar-expand-lg navbar-light mb-4">
+            <div class="container-fluid">
+                <h1 class="text-center">Insert Slime Combo</h1>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Table</a></li>
+                        <li class="nav-item"><a class="nav-link" href="insert.html">Insert</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+        <div id="success-banner" class="alert alert-success" hidden>Slime combo created successfully!</div>
+        <div id="error-banner" class="alert alert-danger" hidden>Form has errors. Please correct them and resubmit.
+        </div>
+
+        <div class="form-section">
+            <!-- Form Fields -->
+            <div class="row mb-3">
+                <div id="name-error" class="col-12 text-danger">&nbsp;</div>
+                <div class="col-md-3">
+                    <label for="name">Combo Name</label>
+                </div>
+                <div class="col-md-9">
+                    <input id="name" type="text" class="form-control rounded-input" />
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div id="slime_one-error" class="col-12 text-danger">&nbsp;</div>
+                <div class="col-md-3">
+                    <label for="slime_one">Slime One</label>
+                </div>
+                <div class="col-md-9">
+                    <input id="slime_one" type="text" class="form-control rounded-input" />
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div id="slime_two-error" class="col-12 text-danger">&nbsp;</div>
+                <div class="col-md-3">
+                    <label for="slime_two">Slime Two</label>
+                </div>
+                <div class="col-md-9">
+                    <input id="slime_two" type="text" class="form-control rounded-input" />
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div id="diet_one_id-error" class="col-12 text-danger">&nbsp;</div>
+                <label for="diet_one_id">Diet Type 1</label>
+                <select id="diet_one_id" class="form-select">
+                    <option value="">Select Diet Type</option>
+                    <option value="1">Fruit</option>
+                    <option value="2">Veggie</option>
+                    <option value="3">Meat</option>
+                    <option value="4">Special</option>
+                    <option value="5">No Preference</option>
+                </select>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div id="diet_two_id-error" class="col-12 text-danger">&nbsp;</div>
+                <label for="diet_two_id">Diet Type 2</label>
+                <select id="diet_two_id" class="form-select">
+                    <option value="">Select Diet Type</option>
+                    <option value="1">Fruit</option>
+                    <option value="2">Veggie</option>
+                    <option value="3">Meat</option>
+                    <option value="4">Special</option>
+                    <option value="5">No Preference</option>
+                </select>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div id="food_one-error" class="col-12 text-danger">&nbsp;</div>
+                <label for="food_one">Food Preference 1</label>
+                <input id="food_one" type="text" class="form-control" />
+            </div>
+            <div class="col-md-6 mb-3">
+                <div id="food_two-error" class="col-12 text-danger">&nbsp;</div>
+                <label for="food_two">Food Preference 2</label>
+                <input id="food_two" type="text" class="form-control" />
+            </div>
+            <div class="row mb-3">
+                <div id="image_one-error" class="col-12 text-danger">&nbsp;</div>
+                <div class="col-md-3">
+                    <label for="image_one">Image One</label>
+                </div>
+                <div class="col-md-9">
+                    <input id="image_one" type="text" class="form-control rounded-input" />
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div id="image_two-error" class="col-12 text-danger">&nbsp;</div>
+                <div class="col-md-3">
+                    <label for="image_two">Image Two</label>
+                </div>
+                <div class="col-md-9">
+                    <input id="image_two" type="text" class="form-control rounded-input" />
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div id="toy_one-error" class="col-12 text-danger">&nbsp;</div>
+                <div class="col-md-3">
+                    <label for="toy_one">Toy One</label>
+                </div>
+                <div class="col-md-9">
+                    <input id="toy_one" type="text" class="form-control rounded-input" />
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div id="toy_two-error" class="col-12 text-danger">&nbsp;</div>
+                <div class="col-md-3">
+                    <label for="toy_two">Toy Two</label>
+                </div>
+                <div class="col-md-9">
+                    <input id="toy_two" type="text" class="form-control rounded-input" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <button id="submit" class="btn btn-primary rounded-button">Submit Combo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+         const isEmpty = (obj) => Object.keys(obj).length === 0;
+        document.getElementById('submit').addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent default form submission behavior
+
+            const getParameters = {};
+
+            // List of field IDs to collect values from
+            const fields = [
+                'name',
+                'slime_one',
+                'slime_two',
+                'diet_one_id',
+                'diet_two_id',
+                'food_one',
+                'food_two',
+                'image_one',
+                'image_two',
+                'toy_one',
+                'toy_two'
+            ];
+
+            // Collect values from the form fields
+            fields.forEach(field => {
+                const element = document.getElementById(field);
+                if (element) {
+                    const value = element.value.trim(); // Trim whitespace
+                    if (value.length > 0) {
+                        getParameters[field] = value; // Add to parameters if not empty
+                    }
+                }
+            });
+
+            console.log('Collected Parameters:', getParameters); // Debugging: Log collected parameters
+
+            let fetchSettings = {
+                method: 'POST',
+                body: getParameters,
+            };
+
+            // Send FETCH API request
+            fetch("/combos/" + (!isEmpty(getParameters) ? '?' + new URLSearchParams(getParameters) : ''), fetchSettings)
+                .then((response) => {
+                    return new Promise((resolve) => response.json()
+                        .then((json) => resolve({
+                            status: response.status,
+                            json,
+                        })
+                        ));
+                })
+                .then(({ status, json }) => {
+                    const successBanner = document.getElementById('success-banner');
+                    const errorBanner = document.getElementById('error-banner');
+                    const errorMessages = document.querySelectorAll('.text-danger');
+
+                    // Clear previous error messages
+                    errorMessages.forEach(element => {
+                        element.innerHTML = '&nbsp;';
+                    });
+
+                    if (status === 400) {
+                        // Display error banner and messages
+                        errorBanner.hidden = false;
+                        successBanner.hidden = true;
+                        json.errors.forEach(error => {
+                            const errorId = `${error.path}-error`;
+                            const errorElement = document.getElementById(errorId);
+                            if (errorElement) {
+                                errorElement.innerHTML = error.msg;
+                            }
+                        });
+                    } else if (status === 200) {
+                        // Display success banner
+                        errorBanner.hidden = true;
+                        successBanner.hidden = false;
+
+                        // Clear form fields
+                        fields.forEach(field => {
+                            const element = document.getElementById(field);
+                            if (element) {
+                                element.value = '';
+                            }
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+</body>
+
+</html>

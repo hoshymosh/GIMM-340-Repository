@@ -1,0 +1,219 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+        crossorigin="anonymous"></script>
+    <title>Slime Rancher 2 Slimes</title>
+    <link rel='stylesheet' href='style.css'>
+</head>
+
+<body>
+    <div class="main-box">
+        <nav class="navbar navbar-expand-lg navbar-light mb-4">
+            <div class="container-fluid">
+                <h1 class="navbar mb-0">Slime Rancher 2 Database</h1>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Table</a></li>
+                        <li class="nav-item"><a class="nav-link" href="insert.html">Insert</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+        <div id="form-error" class="alert alert-danger" hidden>&nbsp;</div>
+        <section class="form-filter section">
+            <form>
+                <div class="row g-3">
+                    <div class="col-12 col-md-6">
+                        <label for="name" class="form-label">Name</label>
+                        <input id="name" type="text" class="form-control" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label for="diet_one_id" class="form-label">Diet Type 1</label>
+                        <select id="diet_one_id" class="form-select">
+                            <option value="">Select Diet Type</option>
+                            <option value="1">Fruit</option>
+                            <option value="2">Veggie</option>
+                            <option value="3">Meat</option>
+                            <option value="4">Special</option>
+                            <option value="5">No Preference</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label for="diet_two_id" class="form-label">Diet Type 2</label>
+                        <select id="diet_two_id" class="form-select">
+                            <option value="">Select Diet Type</option>
+                            <option value="1">Fruit</option>
+                            <option value="2">Veggie</option>
+                            <option value="3">Meat</option>
+                            <option value="4">Special</option>
+                            <option value="5">No Preference</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label for="food_one" class="form-label">Food Preference 1</label>
+                        <input id="food_one" type="text" class="form-control" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label for="food_two" class="form-label">Food Preference 2</label>
+                        <input id="food_two" type="text" class="form-control" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label for="sort" class="form-label">Sort by ID</label>
+                        <select id="sort" class="form-select">
+                            <option value="ASC">Ascending</option>
+                            <option value="DESC">Descending</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label for="limit" class="form-label">Limit Search Results</label>
+                        <input id="limit" type="text" class="form-control" />
+                    </div>
+                    <div class="col-12 d-flex justify-content-center">
+                        <button id="search" type="button" class="btn btn-primary w-100 w-md-50">Search!</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+
+    <div id="slime-responses" class="mt-4"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            searchSlime();
+
+            document.getElementById('search').addEventListener('click', (event) => {
+                searchSlime();
+            });
+        });
+
+        //function to delete the slime
+        function deleteSlime(id) {
+            if (confirm('Are you sure you want to delete this slime?')) {
+                fetch('/combos/' + id, { method: 'DELETE' })
+                    .then((response) => {
+                        if (response.status === 200) {
+                            alert('SLIMEEEE KILLED successfully!');
+                            searchSlime();
+                        } else {
+                            alert('Error deleting SLAIME!');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }
+        }
+
+        function searchSlime() {
+            const getParameters = {};
+
+            if (document.getElementById('name').value.length !== 0) {
+                getParameters.name = document.getElementById('name').value;
+            }
+
+            if (document.getElementById('diet_one_id').value.length !== 0) {
+                getParameters.diet_one_id = document.getElementById('diet_one_id').value;
+            }
+            if (document.getElementById('diet_two_id').value.length !== 0) {
+                getParameters.diet_two_id = document.getElementById('diet_two_id').value;
+            }
+
+            if (document.getElementById('food_one').value.length !== 0) {
+                getParameters.food_one = document.getElementById('food_one').value;
+            }
+            if (document.getElementById('food_two').value.length !== 0) {
+                getParameters.food_two = document.getElementById('food_two').value;
+            }
+
+            // Collect Sort filter
+            const sort = document.getElementById('sort').value;
+            if (sort) {
+                getParameters.sort_by = 'id'; // Sorting by ID
+                getParameters.sort = sort;
+            }
+
+
+            // Collect Limit filter
+            const limit = document.getElementById('limit').value.trim();
+            if (limit && !isNaN(limit)) {
+                getParameters.limit = parseInt(limit, 10);
+            }
+
+            // Build query string
+            const queryString = new URLSearchParams(getParameters).toString();
+
+            // Fetch filtered data from the server
+            fetch(`/combos?${queryString}`, { method: 'GET' })
+                .then(response => response.json())
+                .then(data => {
+                    const slimeResponses = document.getElementById('slime-responses');
+                    let table = `
+                        <div class="table-responsive">
+                        <table class="table table-striped align-middle">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Slimes</th>
+                                <th>Images</th>
+                                <th>Diet</th>
+                                <th>Food Preferences</th>
+                                <th>Toy Preferences</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
+
+                    if (data.data && data.data.length > 0) {
+                        for (const response of data.data) {
+                            const combinedSlimes = `${response.slime_one}, ${response.slime_two}`;
+                            const combinedImages = `
+                                <img src="${response.image_one || 'default-image1.jpg'}" alt="Slime Image 1" class="slime-img me-1 mb-1">
+                                <img src="${response.image_two || 'default-image2.jpg'}" alt="Slime Image 2" class="slime-img mb-1">
+                            `;
+                            const combinedDiet = `${response.diet_one_id_category}, ${response.diet_two_id_category}`;
+                            const combinedFoodPref = `${response.food_one}, ${response.food_two}`;
+                            const combinedToyPref = `${response.toy_one}, ${response.toy_two}`;
+
+                            table += `<tr>
+                                <td>${response.id}</td>
+                                <td>${response.name}</td>
+                                <td>${combinedSlimes}</td>
+                                <td>${combinedImages}</td>
+                                <td>${combinedDiet}</td>
+                                <td>${combinedFoodPref}</td>
+                                <td>${combinedToyPref}</td>
+                                <td>
+                                    <a href='edit.html?id=${response.id}'>Edit</a> -
+                                    <button onclick="deleteSlime(${response.id})" class="btn btn-danger btn-sm">Delete</button>
+                                </td>
+                            </tr>`;
+                        }
+                    } else {
+                        table += `<tr><td colspan="8" class="text-center">No results found.</td></tr>`;
+                    }
+
+                    table += `</tbody></table></div>`;
+                    slimeResponses.innerHTML = table;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    </script>
+</body>
+
+</html>
