@@ -42,7 +42,7 @@ const upload = multer({
         callback(null, allowedFileMimeTypes.includes(file.mimetype));
     }
 });
-const port = 80 //Default port to http server
+const port = 3000 //Default port to http server
 const successfulSubs = []
 
 //App.* is from the Express package that helps handle our async functions from noun.js. This app.get references the getAll async from combos.js.
@@ -223,4 +223,5 @@ app.delete(
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
+
 })
