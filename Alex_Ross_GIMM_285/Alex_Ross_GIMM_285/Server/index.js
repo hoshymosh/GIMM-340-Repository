@@ -21,6 +21,12 @@ const {    nameValidation,
 //Setup defaults for script
 const app = express();
 app.use(express.static('public'))
+
+app.use(express.static(__dirname + '/public'));
+//Webpage
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 const storage = multer.diskStorage({
     //Logic where to upload file
     destination: function (request, file, callback) {
@@ -225,3 +231,4 @@ app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
 
 })
+
